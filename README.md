@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fareburn — AI Rewards Scanner for Credit Card Points
+
+Fareburn scans 50+ airlines and hotels to find when YOUR points unlock premium seats — and alerts you instantly.
+
+## Stack
+
+- **Framework:** Next.js 16 (App Router, Turbopack)
+- **Components:** shadcn/ui
+- **Styling:** Tailwind CSS 4
+- **Animations:** Framer Motion
+- **Auth:** NextAuth.js v5 (email/password + Google OAuth)
+- **Database:** PostgreSQL (Prisma ORM)
+- **Payments:** Stripe (test mode)
+- **Fonts:** DM Serif Display, Plus Jakarta Sans, JetBrains Mono
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
+npx prisma generate
+npx prisma db push
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Copy `.env.example` to `.env.local` and fill in:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `DATABASE_URL` — PostgreSQL connection string
+- `AUTH_SECRET` — NextAuth secret
+- `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` — Google OAuth
+- `STRIPE_SECRET_KEY` / `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` — Stripe
 
-## Learn More
+## Pages
 
-To learn more about Next.js, take a look at the following resources:
+| Route | Description |
+|-------|-------------|
+| `/` | Landing page (10 sections) |
+| `/about` | Company story, mission, values, timeline |
+| `/pricing` | 3-tier pricing with monthly/yearly toggle |
+| `/tools/calculator` | Free public calculator (lead magnet, no auth) |
+| `/signup` | Registration with email + Google OAuth |
+| `/login` | Login page |
+| `/dashboard` | Main app — programs, stats, opportunities |
+| `/dashboard/alerts` | Award alert management |
+| `/dashboard/calculator` | Authenticated calculator with alerts |
+| `/blog` | Blog listing page |
+| `/contact` | Contact form |
+| `/privacy` | Privacy policy |
+| `/terms` | Terms of service |
+| `/deck` | Pitch deck (Framer Motion slides) |
+| `/docs` | Documentation hub (5 sections) |
+| `/api/health` | Health check endpoint |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deploy via Coolify to `fareburn.ashketing.com`.
